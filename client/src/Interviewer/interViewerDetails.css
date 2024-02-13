@@ -9,14 +9,11 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    overflow-y: scroll;
+    gap: 40px;
     width: 60%;
 }
 
-.detailsFeild .text{
+.detailsFeild .inputFeild{
     width: 100%;
-    max-width: 400px;
     font-size: 30px;
-    /* padding: 10px 0; */
-    resize: vertical;
 }

@@ -7,7 +7,7 @@ const ApplicantSchema = mongoose.Schema({
         type: Array,
         default: [],
     },
-    scceptedInterviewsList: {
+    acceptedInterviewsList: {
         type: Array,
         default: [],
     },
@@ -29,6 +29,6 @@ const ApplicantSchema = mongoose.Schema({
     avatar: String,
 });
 
-const InterviwersModel = mongoose.model('Applicant', ApplicantSchema);
+const ApplicantModel = mongoose.model('Applicant', ApplicantSchema);
 
-module.exports = InterviwersModel;
+module.exports = ApplicantModel;

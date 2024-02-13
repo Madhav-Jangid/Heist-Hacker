@@ -1,0 +1,194 @@
+.page{
+    width: 100%;
+    height: 100vh;
+}
+
+.parallax {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+#title {
+    position: absolute;
+    top: 13%;
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: var(--primary-text-light);
+    z-index: 50;
+}
+
+.blog {
+    position: relative;
+    padding: 120px 150px 20px;
+    background: var(--primary-blue1);
+}
+
+.blog h2 {
+    font-size: clamp(2rem, 6vw, 3rem);
+    color: var(--primary-text-light);
+    margin: 60px 0 40px;
+    text-align: center;
+}
+
+.blog p {
+    font-size: clamp(1rem, 6vw, 1.3rem);
+    color: var(--primary-text-light);
+    font-weight: 400;
+    margin-bottom: 30px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.cards {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 60px 60px;
+    background: var(--secondary-color);
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(100%, 450px);
+    background-color: #fff;
+    box-shadow: 0 6px 30px var(--box-shadow-color);
+    border-radius: 20px;
+    padding: 30px 40px;
+}
+
+.card img {
+    display: block;
+    width: 100%;
+    max-width: 250px;
+    aspect-ratio: 1/1;
+    margin: 20px;
+}
+
+.card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 20px 0 20px;
+    text-align: center;
+    color: var(--primary-text-light);
+}
+
+.card p {
+    font-size: 1rem;
+    text-align: justify;
+    line-height: 1.5;
+    color: var(--primary-text-light);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom,
+            var(--overlay-gradient-start),
+            var(--overlay-gradient-mid1),
+            var(--overlay-gradient-mid2),
+            var(--overlay-gradient-end));
+    border-radius: 20px;
+    list-style: none;
+    z-index: 1;
+    opacity: 0;
+    padding: 20px 40px;
+    transition: all 0.4s ease-in-out;
+}
+
+.overlay:hover {
+    opacity: 1;
+    cursor: default;
+}
+
+@media (max-width: 1300px) {
+    header {
+        padding: 30px 50px;
+    }
+
+    #title {
+        top: 16%;
+    }
+
+    .parallax {
+        height: 120dvh;
+    }
+
+    .blog {
+        padding: 100px 120px 20px;
+    }
+}
+
+@media (max-width: 900px) {
+    .navigation li {
+        margin-left: 10px;
+    }
+
+    .parallax {
+        height: 100dvh;
+    }
+
+    #title {
+        top: 20%;
+    }
+
+    .blog {
+        padding: 90px 100px 20px;
+    }
+
+    .cards {
+        padding: 40px 40px;
+    }
+
+    .card h3 {
+        margin: 20px 0 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .navigation li {
+        margin-left: 5px;
+    }
+
+    header {
+        padding: 30px 10px;
+    }
+
+    #title {
+        top: 40%;
+    }
+
+    .blog {
+        padding: 90px 40px 20px;
+    }
+
+    .blog p {
+        font-size: 1rem;
+    }
+
+    .card {
+        width: min(100%, 450px);
+    }
+
+    .card h3 {
+        font-size: 1.2rem;
+    }
+
+    .card p {
+        font-size: 0.85rem;
+        text-align: unset;
+    }
+}

@@ -51,3 +51,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.navLink{
+  text-decoration: none;
+}
+.authLinkCont{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+.homePageLinkToAuth{
+  padding: 10px;
+  background-color: var(--primary-blue4);
+  color: var(--primary-text-dark);
+  text-decoration: none;
+  border-radius: 10px;
+}

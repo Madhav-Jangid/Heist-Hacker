@@ -151,6 +151,14 @@
     color: var(--primary-blue4);
 }
 
+.homeLink{
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @keyframes slideLeft {
     0% {
         transform: translateX(-54%);

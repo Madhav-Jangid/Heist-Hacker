@@ -12,13 +12,13 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import OtpInput from "react-otp-input";
 import LoadingBar from 'react-top-loading-bar';
 import InterviewerDetails from '../Interviewer/InterviewerDetails';
+import { appName } from '../config';
 
 
-export default function Signup() {
+export default function Signup({ user }) {
   const [progress, setProgress] = useState(0)
 
-  const appName = 'Wisper Talks';
-  const companyName = 'wisperTalks'
+  const companyName = appName
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -59,7 +59,7 @@ export default function Signup() {
 
   const vaildEmailChecker = async (feild, value) => {
     try {
-      const response = await fetch('/interviewer/credentials', {
+      const response = await fetch(`/${user}/credentials`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ export default function Signup() {
     setProgress(70);
     formData.validOTP = await (Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000).toString();
     try {
-      const response = await fetch('/interviewer/verify', {
+      const response = await fetch(`/${user}/verify`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -153,7 +153,7 @@ export default function Signup() {
     e.preventDefault();
     if (formData.validOTP === formData.otp) {
       try {
-        const response = await fetch('/interviwer/signup', {
+        const response = await fetch(`/${user}/signup`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -174,7 +174,7 @@ export default function Signup() {
         }
         showMessages('success', `${responseData.name} you have registered successfully`);
         setNavigate(true);
-        localStorage.setItem('user', JSON.stringify(responseData))
+        localStorage.setItem('user', JSON.stringify(responseData)._id)
       } catch (error) {
         console.error('Error during registration:', error);
         showMessages('error', error.message)
@@ -202,32 +202,23 @@ export default function Signup() {
 
   return (
     <div className='authPage'>
-      {Registered ? 
-      <Navigate to={<InterviewerDetails />}></Navigate>  : null 
-    }
-      {/* {navigateUserToChats ?
-        (
-          localStorage.getItem('user') ?
-            <Navigate to={'/home/chats'}></Navigate> : null
-        ) :
-        null
-      } */}
+      {JSON.parse(localStorage.getItem('user')) ?
+        <Navigate to={`/${user}/details`}></Navigate> : null
+      }
       <LoadingBar
         height={5}
         color='var(--primary-text- bark)'
         progress={progress}
         onLoaderFinished={() => setProgress(0)}
       />
-      {/* {
-        navigate ?
-          <Navigate to={'/home/chats'}></Navigate> :
-          null
-      } */}
       <ToastContainer></ToastContainer>
       <div className="authFormCont register">
         <div className="pageInfo">
-          <h2>Create an account as Interviewer</h2>
-          <p>Join our community and start your journy of taking Interviewes and earn</p>
+          <h2>Create an account as {user}</h2>
+          {user === 'applicant' ?
+            <p>Join our community and start your journy of giving Interviewes</p> :
+            <p>Join our community and start your journy of taking Interviewes and earn</p>
+          }
         </div>
         <form
           onSubmit={validEmail && validName ? handleRegister : handleError}
@@ -320,7 +311,9 @@ export default function Signup() {
           <h5><span></span> Or Login <span></span></h5>
           <h4>
             Already have an account
-            <Link className='link' to={'/'}> Login</Link>
+            <Link className='link' to={`/${user}/login`}> Login</Link>
+            <br />
+            <Link className='link homeLink' to={`/`}>Home</Link>
           </h4>
         </form>
       </div>
